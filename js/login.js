@@ -1,6 +1,10 @@
-(function() {
+var APP = APP || {};
+APP.loginSpotify= {};
+(function($, APP) {
 
   var stateKey = 'spotify_auth_state';
+
+
 
   /**
    * Obtains parameters from the hash of the URL
@@ -56,7 +60,8 @@
             'Authorization': 'Bearer ' + access_token
           },
           success: function(response) {
-            console.log(response);
+            APP.loginSpotify.data = response;
+            APP.loginSpotify.accessToken = access_token
             userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
             $('#login').hide();
@@ -88,4 +93,4 @@
       window.location = url;
     }, false);
   }
-})();
+})(jQuery, APP);

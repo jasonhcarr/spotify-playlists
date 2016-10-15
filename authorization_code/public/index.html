@@ -1,8 +1,15 @@
+
+
 <!doctype html>
 <html>
+<!-- There are elements remaining from the sample code provided by Spotify.  I have attempted to indicate these where possible with SC(Spotify Code). -->
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>My Spotify Playlist Manager</title>
+<!-- SC -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- //  /SC -->
+    <link rel="stylesheet" href="/../styles/main.css" media="screen" title="no title">
+<!-- SC -->
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -14,12 +21,14 @@
         width: 500px;
       }
     </style>
+      <!-- /SC -->
   </head>
 
   <body>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <h1>Spotify Playlist Manager</h1>
+        <!-- //SC -->
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
@@ -39,12 +48,13 @@
         </div>
         <div class="media-body">
           <dl class="dl-horizontal">
-            <dt>Abercombie WiggleBottom</dt><dd class="clearfix">{{display_name}}</dd>
+            <dt>Abercombie WiggleBottom</dt><dd class="clearfix">{{name}}</dd>
             <dt>Papers Please</dt><dd>{{id}}</dd>
-            <dt>Lightning Letters</dt><dd>{{email}}</dd>
+            <dt>Lightning Letters</dt><dd>{{0.track.name}}</dd>
             <dt>Some Music I like</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
             <dt>Looky Here</dt><dd><a href="{{href}}">{{href}}</a></dd>
             <dt>Ain't I Pretty</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
+            <dt>Size of My Clan</dt><dd class="followers"><a href="{{followers.total}}">{{followers.total}}</a></dd>
             <dt>Country</dt><dd>{{country}}</dd>
           </dl>
         </div>
@@ -61,6 +71,9 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/js/handlebars-v44.0.5.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
     <script>
       (function() {
 
@@ -103,11 +116,12 @@
             });
 
             $.ajax({
-                url: 'https://api.spotify.com/v1/me',
+                url: 'https://api.spotify.com/v1/users/1221442507/playlists/3Eruo4sHfpSx7yIVU6HCih?market=ES',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                  console.log(response);
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
                   $('#login').hide();
@@ -137,8 +151,6 @@
         }
       })();
     </script>
-    <script src="/../app.js" type="text/javascript">
 
-    </script>
   </body>
 </html>

@@ -61,7 +61,8 @@ APP.loginSpotify= {};
           },
           success: function(response) {
             APP.loginSpotify.data = response;
-            APP.loginSpotify.accessToken = access_token
+            APP.loginSpotify.accessToken = access_token;
+            APP.Calls.playlistCall(access_token);
             userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
             $('#login').hide();

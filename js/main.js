@@ -1,7 +1,7 @@
 //VARIABLE DECLARATIONS
-var client_id = '4e84e49e334f411e95add4fad7edf9e7'; // Your client id
-var accessToken = APP.loginSpotify.accessToken;
-var profileResponse = APP.loginSpotify.data;
+// var client_id = '4e84e49e334f411e95add4fad7edf9e7'; // Your client id
+// var accessToken = APP.loginSpotify.accessToken;
+// var profileResponse = APP.loginSpotify.data;
 var APP = APP || {};
 //CONSTRUCTORS
 

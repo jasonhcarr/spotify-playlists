@@ -8,7 +8,7 @@ var APP = APP || {};
 //FUNCTIONS
 
 //CALLS
-var APP.Calls = {
+APP.Calls = {
         playlistCall: function(access_token) {
             $.ajax({
                 url: 'https://api.spotify.com/v1/users/1221442507/playlists/3Eruo4sHfpSx7yIVU6HCih?market=ES',

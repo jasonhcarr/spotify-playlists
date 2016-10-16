@@ -1,5 +1,11 @@
 var APP = APP || {};
-APP.loginSpotify= {};
+APP.loginSpotify= {
+  accessToken: null,
+  userId: null,
+  profilePic: null,
+  spotifyURI: null
+};
+
 (function($, APP) {
 
   var stateKey = 'spotify_auth_state';
@@ -33,7 +39,7 @@ APP.loginSpotify= {};
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
-  };
+  }
 
   var userProfileSource = document.getElementById('user-profile-template').innerHTML,
       userProfileTemplate = Handlebars.compile(userProfileSource),
@@ -60,9 +66,11 @@ APP.loginSpotify= {};
             'Authorization': 'Bearer ' + access_token
           },
           success: function(response) {
-            APP.loginSpotify.data = response;
+            APP.loginSpotify.userId = response.id;
             APP.loginSpotify.accessToken = access_token;
-            APP.Calls.playlistCall(access_token);
+            APP.loginSpotify.profilePic = response.images[0].url;
+            APP.loginSpotify.spotifyURI = response.external_urls.spotify;
+            APP.Calls.allPlaylistsCall();
             userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
             $('#login').hide();
